@@ -1,0 +1,9 @@
+# GitHub Actions Runner
+actions-runner/
+
+# Fichiers temporaires
+*.log
+*.tmp
+
+# Fichiers système
+.DS_Store

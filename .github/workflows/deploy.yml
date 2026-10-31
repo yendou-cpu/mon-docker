@@ -1,0 +1,45 @@
+name: Deploy Web Page to Nginx Container
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify project files
+        run: |
+          echo "Checking project structure..."
+          pwd
+          ls -la
+          test -f Dockerfile
+          test -f html/index.html
+
+      - name: Build Docker image
+        run: |
+          docker build --pull -t mon-site-nginx .
+
+      - name: Stop old container
+        run: |
+          docker stop mon-site-container || true
+          docker rm mon-site-container || true
+
+      - name: Start new container
+        run: |
+          docker run -d \
+            --name mon-site-container \
+            -p 8080:80 \
+            --restart unless-stopped \
+            mon-site-nginx
+
+      - name: Verify deployment
+        run: |
+          docker ps
+          curl -f http://localhost:8080/ || exit 1
