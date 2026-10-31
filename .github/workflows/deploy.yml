@@ -39,7 +39,20 @@ jobs:
             --restart unless-stopped \
             mon-site-nginx
 
-      - name: Verify deployment
+            - name: Verify deployment
         run: |
-          docker ps
-          curl -f http://localhost:8080/ || exit 1
+          echo "Waiting for Nginx to become ready..."
+
+          for i in {1..10}; do
+            if curl -fsS http://localhost:8080/; then
+              echo "Deployment successful!"
+              exit 0
+            fi
+
+            echo "Attempt $i failed. Waiting 3 seconds..."
+            sleep 3
+          done
+
+          echo "Deployment failed: Nginx is not responding."
+          docker logs mon-site-container
+          exit 1
