@@ -1,15 +1,95 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma première page HTML</title>
+
+    <title>Mon premier projet Docker CI/CD</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 45px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 600px;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Bienvenue sur mon site</h1>
-    <p>Ceci est un paragraphe simple rédigé en HTML.</p>
-    <a href="https://developer.mozilla.org/fr/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content">En savoir plus sur MDN Web Docs</a>
+    <div class="container">
+
+        <h1>Bienvenue dans mon projet Docker !</h1>
+
+        <p>
+            Cette page est déployée automatiquement grâce à
+            Docker et GitHub Actions.
+        </p>
+
+        <div class="badge">
+            CI/CD : Déploiement automatisé
+        </div>
+
+        <p>
+            Chaque modification envoyée sur GitHub
+            déclenche automatiquement la reconstruction
+            de l'image Docker et le déploiement du site.
+        </p>
+
+        <footer>
+            Projet pratique DevOpsSec - 2026
+            <br>
+            Serveur Web : Nginx | Conteneur : Docker
+        </footer>
+
+    </div>
 
 </body>
 </html>
